@@ -47,15 +47,21 @@ export default function DashboardSiswa() {
         body: JSON.stringify(formData)
       });
 
+      // Menangkap balasan dari backend agar sama rapinya dengan DashboardGuru
+      const data = await response.json();
+
       if (response.ok) {
         setFormData({ namaLengkap: '', nisn: '', kelas: '', jurusan: '' });
         setIsEditing(false);
         setEditId(null);
-        setShowForm(false); // Sembunyikan form setelah sukses
+        setShowForm(false); 
         fetchSiswa(); 
-        alert(isEditing ? "Data berhasil diubah!" : "Data berhasil ditambahkan!");
+        alert(isEditing ? "Data siswa berhasil diubah!" : "Data siswa berhasil ditambahkan!");
+      } else {
+        alert(`Gagal menyimpan: ${data.pesan || 'Terjadi kesalahan'}`);
       }
     } catch (error) {
+      alert("Gagal terhubung. Pastikan Backend di Railway sudah aktif!");
       console.error("Gagal menyimpan data:", error);
     }
   };
@@ -69,11 +75,11 @@ export default function DashboardSiswa() {
     });
     setIsEditing(true);
     setEditId(data._id);
-    setShowForm(true); // Buka form
+    setShowForm(true); 
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Yakin ingin menghapus data ini?")) return;
+    if (!window.confirm("Yakin ingin menghapus data siswa ini?")) return;
     try {
       const response = await fetch(`${baseURL}/${id}`, {
         method: 'DELETE',
@@ -104,7 +110,7 @@ export default function DashboardSiswa() {
         </button>
       </div>
 
-      {/* FORM INPUT (Sistem Accordion/Collapse) */}
+      {/* FORM INPUT */}
       {showForm && (
         <div className="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-slate-200 animate-in fade-in slide-in-from-top-4 duration-300">
           <h3 className="text-lg font-semibold text-slate-800 mb-5 border-b border-slate-100 pb-3">
@@ -114,19 +120,19 @@ export default function DashboardSiswa() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap</label>
-                <input type="text" name="namaLengkap" value={formData.namaLengkap} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
+                <input type="text" name="namaLengkap" placeholder="Masukkan Nama Lengkap" value={formData.namaLengkap} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">NISN Nasional</label>
-                <input type="text" name="nisn" value={formData.nisn} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
+                <input type="text" name="nisn" placeholder="Masukkan NISN Nasional" value={formData.nisn} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Kelas Tingkat</label>
-                <input type="text" name="kelas" placeholder="Cth: X IPA 1" value={formData.kelas} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
+                <input type="text" name="kelas" placeholder="Masukkan Tingkat Kelas" value={formData.kelas} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Program Jurusan</label>
-                <input type="text" name="jurusan" placeholder="Cth: Ilmu Pengetahuan Alam" value={formData.jurusan} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
+                <input type="text" name="jurusan" placeholder="Masukkan Program Jurusan" value={formData.jurusan} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-colors" />
               </div>
             </div>
             <div className="flex gap-3 justify-end pt-4 border-t border-slate-100">

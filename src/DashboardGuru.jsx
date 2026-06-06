@@ -120,15 +120,15 @@ export default function DashboardGuru() {
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-6">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Nama Lengkap & Gelar</label>
-                <input type="text" name="namaLengkap" placeholder="Cth: Budi Santoso, S.Pd." value={formData.namaLengkap} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors" />
+                <input type="text" name="namaLengkap" placeholder="Masukkan Nama Lengkap & Gelar" value={formData.namaLengkap} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">NIP</label>
-                <input type="text" name="nip" placeholder="Nomor Induk Pegawai" value={formData.nip} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors" />
+                <input type="text" name="nip" placeholder="Masukkan Nomor Induk Pegawai" value={formData.nip} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors" />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1">Mata Pelajaran</label>
-                <input type="text" name="mataPelajaran" placeholder="Cth: Matematika" value={formData.mataPelajaran} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors" />
+                <input type="text" name="mataPelajaran" placeholder="Masukkan Mata Pelajaran" value={formData.mataPelajaran} onChange={handleChange} required className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:bg-white transition-colors" />
               </div>
             </div>
             <div className="flex gap-3 justify-end pt-4 border-t border-slate-100">
